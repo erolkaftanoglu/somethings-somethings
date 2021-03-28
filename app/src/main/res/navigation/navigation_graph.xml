@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_nickname">
         <action
             android:id="@+id/action_nicknameFragment_to_messagesFragment"
-            app:destination="@id/messagesFragment" />
+            app:destination="@id/messagesFragment"
+            app:enterAnim="@anim/fadein"
+            app:exitAnim="@anim/fadeout"
+            app:popEnterAnim="@anim/fadein"
+            app:popExitAnim="@anim/fadeout" />
     </fragment>
     <fragment
         android:id="@+id/messagesFragment"

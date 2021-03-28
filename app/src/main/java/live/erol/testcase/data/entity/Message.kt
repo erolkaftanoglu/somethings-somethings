@@ -9,7 +9,7 @@ data class Message(
     @SerializedName("text")
     val text: String,
     @SerializedName("timestamp")
-    val timestamp: Int,
+    val timestamp: Long,
     @SerializedName("user")
     val user: User
 )

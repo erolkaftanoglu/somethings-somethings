@@ -8,7 +8,9 @@ import live.erol.testcase.data.entity.Message
 import live.erol.testcase.data.entity.User
 import live.erol.testcase.data.repository.MessageRepository
 import live.erol.testcase.utils.SPref
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class MessagesViewModel @Inject constructor(
@@ -42,11 +44,12 @@ class MessagesViewModel @Inject constructor(
     }
 
     fun sendMessage(message: String) {
+
         messageLiveData.value = Message(
             "message_id",
             "${message}",
-            124124,
-            user = User("", "userID", "${nickname}")
+            Calendar.getInstance(Locale.getDefault()).timeInMillis,
+            user = User("https://randomuser.me/api/portraits/men/78.jpg", "userID", "${nickname}")
         )
     }
 

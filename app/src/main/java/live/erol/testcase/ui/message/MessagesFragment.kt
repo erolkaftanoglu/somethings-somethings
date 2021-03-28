@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import live.erol.testcase.base.BaseFragment
 import live.erol.testcase.databinding.FragmentMessagesBinding
+import live.erol.testcase.extensions.goneView
 import live.erol.testcase.extensions.setOnSafeClickListener
+import live.erol.testcase.extensions.showView
 import live.erol.testcase.utils.Resource
 import live.erol.testcase.utils.autoCleared
 
@@ -64,15 +66,18 @@ class MessagesFragment : BaseFragment() {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     Log.v("MessagesLog", "${it.data.toString()}")
+                    binding.loadingBar.goneView()
                     it.data?.let { response ->
                         viewModel.setMessageList(messages = response.messages.reversed())
                     }
                 }
                 Resource.Status.ERROR -> {
                     Log.v("MessagesLog", "${it.message.toString()}")
+                    binding.loadingBar.goneView()
                 }
                 Resource.Status.LOADING -> {
                     Log.v("MessagesLog", "Loading - ${it}")
+                    binding.loadingBar.showView()
                 }
             }
         })
