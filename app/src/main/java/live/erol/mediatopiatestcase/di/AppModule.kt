@@ -1,11 +1,20 @@
 package live.erol.mediatopiatestcase.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import live.erol.mediatopiatestcase.BuildConfig
+import live.erol.mediatopiatestcase.data.remote.ApiService
+import live.erol.mediatopiatestcase.data.remote.MessageRemoteDataSource
 import live.erol.mediatopiatestcase.utils.Logger
 import live.erol.mediatopiatestcase.utils.SPref
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -21,4 +30,32 @@ object AppModule {
     @Provides
     fun provideMMKV(): SPref = SPref()
 
+    @Singleton
+    @Provides
+    fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(okHttpClient)
+        .build()
+
+    @Provides
+    fun provideGson(): Gson = GsonBuilder().create()
+
+    @Provides
+    fun provideOkHttp(): OkHttpClient {
+        val builder = OkHttpClient.Builder()
+        builder.interceptors().add(HttpLoggingInterceptor().apply {
+            level =
+                if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        })
+        return builder.build()
+    }
+
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideMessageRemoteDataSource(apiService: ApiService) = MessageRemoteDataSource(apiService)
 }

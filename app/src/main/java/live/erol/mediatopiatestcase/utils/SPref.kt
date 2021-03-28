@@ -7,23 +7,23 @@ import javax.inject.Inject
 
 class SPref @Inject constructor() {
     private var kv: MMKV? = null
-    val APP_TOKEN = "APP.TOKEN"
+    val APP_NICKNAME = "APP.NICKNAME"
 
     fun config(@ApplicationContext context: Context) {
         MMKV.initialize(context)
         kv = MMKV.defaultMMKV()
     }
 
-    private fun saveString(key: String, value: String) = kv?.encode(key, value)
+    private fun saveString(key: String, value: String) = kv?.encode(key, value) ?: false
     private fun getString(key: String, defaultValue: String): String =
         kv?.decodeString(key, defaultValue)!!
 
-    fun getToken(): String? {
-        return getString(APP_TOKEN, "")
+    fun getNickname(): String {
+        return getString(APP_NICKNAME, "")
     }
 
-    fun setToken(token: String) {
-        saveString(APP_TOKEN, token)
+    fun setNickname(nickname: String): Boolean {
+        return saveString(APP_NICKNAME, nickname)
     }
 
 }
