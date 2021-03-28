@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">MediaTopiaTestCase</string>
+    <string name="app_name">TestCase</string>
     <string name="select_nickname">Select nickname</string>
     <string name="set_nickname">Set Nickname</string>
+    <string name="enter_message">Enter message</string>
+    <string name="send">Send</string>
 </resources>

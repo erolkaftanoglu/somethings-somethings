@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nicknameFragment"
-        android:name="live.erol.mediatopiatestcase.ui.nickname.NicknameFragment"
+        android:name="live.erol.testcase.ui.nickname.NicknameFragment"
         android:label="NicknameFragment"
         tools:layout="@layout/fragment_nickname">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/messagesFragment"
-        android:name="live.erol.mediatopiatestcase.ui.message.MessagesFragment"
+        android:name="live.erol.testcase.ui.message.MessagesFragment"
         android:label="MessagesFragment"
         tools:layout="@layout/fragment_messages" />
 

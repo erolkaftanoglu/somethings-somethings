@@ -2,4 +2,6 @@
 <resources>
     <string name="select_nickname">Select nickname</string>
     <string name="set_nickname">Set Nickname</string>
+    <string name="enter_message">Enter message</string>
+    <string name="send">Send</string>
 </resources>

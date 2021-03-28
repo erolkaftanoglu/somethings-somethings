@@ -10,7 +10,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "live.erol.mediatopiatestcase"
+        applicationId "live.erol.testcase"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
