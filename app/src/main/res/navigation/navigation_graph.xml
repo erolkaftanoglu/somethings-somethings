@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/nicknameFragment">
+
+    <fragment
+        android:id="@+id/nicknameFragment"
+        android:name="live.erol.mediatopiatestcase.ui.nickname.NicknameFragment"
+        android:label="NicknameFragment"
+        tools:layout="@layout/fragment_nickname">
+        <action
+            android:id="@+id/action_nicknameFragment_to_messagesFragment"
+            app:destination="@id/messagesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/messagesFragment"
+        android:name="live.erol.mediatopiatestcase.ui.message.MessagesFragment"
+        android:label="MessagesFragment"
+        tools:layout="@layout/fragment_messages" />
 
 </navigation>

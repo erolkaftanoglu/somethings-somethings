@@ -88,4 +88,7 @@ dependencies {
     //SharedPref
     implementation 'com.tencent:mmkv-static:1.2.7'
 
+    //dimens
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
 }
