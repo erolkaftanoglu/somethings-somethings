@@ -8,6 +8,7 @@ import javax.inject.Inject
 class SPref @Inject constructor() {
     private var kv: MMKV? = null
     val APP_NICKNAME = "APP.NICKNAME"
+    val APP_USER_ID = "APP.NICKNAME"
 
     fun config(@ApplicationContext context: Context) {
         MMKV.initialize(context)
@@ -23,7 +24,16 @@ class SPref @Inject constructor() {
     }
 
     fun setNickname(nickname: String): Boolean {
+        setUserID("$nickname-1")
         return saveString(APP_NICKNAME, nickname)
+    }
+
+    fun getUserID(): String {
+        return getString(APP_USER_ID, "")
+    }
+
+    fun setUserID(userID: String): Boolean {
+        return saveString(APP_USER_ID, userID)
     }
 
 }

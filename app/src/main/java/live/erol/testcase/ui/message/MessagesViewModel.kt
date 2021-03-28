@@ -22,6 +22,7 @@ class MessagesViewModel @Inject constructor(
     private var messageLiveData = MutableLiveData<Message>()
     private var messageButtonStateLiveData = MutableLiveData<Boolean>(false)
     private var nickname = ""
+    private var userID = ""
 
     fun listenNickname(): LiveData<String> = nicknameLiveData
     fun listenMessageList(): LiveData<ArrayList<Message>> = messageListLiveData
@@ -30,10 +31,13 @@ class MessagesViewModel @Inject constructor(
 
     fun getNickname() {
         nickname = sPref.getNickname()
+        userID = sPref.getUserID()
         nicknameLiveData.value = "$nickname"
     }
 
+
     fun removeSession(): Boolean {
+        sPref.setUserID("")
         return sPref.setNickname("")
     }
 
@@ -44,16 +48,23 @@ class MessagesViewModel @Inject constructor(
     }
 
     fun sendMessage(message: String) {
-
         messageLiveData.value = Message(
             "message_id",
             "${message}",
             Calendar.getInstance(Locale.getDefault()).timeInMillis,
-            user = User("https://randomuser.me/api/portraits/men/78.jpg", "userID", "${nickname}")
+            user = User(
+                "https://randomuser.me/api/portraits/men/78.jpg",
+                "$userID",
+                "${nickname}"
+            )
         )
     }
 
     fun checkMessageView(message: String) {
         messageButtonStateLiveData.value = message.isNotEmpty()
+    }
+
+    fun getSyncUserID(): String {
+        return sPref.getUserID()
     }
 }

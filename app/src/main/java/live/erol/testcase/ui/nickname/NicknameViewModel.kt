@@ -20,11 +20,7 @@ class NicknameViewModel @Inject constructor(private val sPref: SPref) : ViewMode
         this.nickname = nickname
     }
 
-
     fun letsContinueWithNickname(nickname: String): Boolean {
-        if (nickname.length < 2) {
-            return false
-        }
         return sPref.setNickname(nickname = nickname)
     }
 

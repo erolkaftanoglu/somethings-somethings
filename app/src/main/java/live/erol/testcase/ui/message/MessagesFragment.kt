@@ -96,7 +96,7 @@ class MessagesFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MessagesAdapter("userID")
+        adapter = MessagesAdapter(viewModel.getSyncUserID())
         binding.messageListRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
         binding.messageListRecyclerView.adapter = adapter
