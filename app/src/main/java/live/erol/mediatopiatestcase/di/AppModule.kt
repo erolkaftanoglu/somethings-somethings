@@ -11,7 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    const val url = "https://media.meditopia.com/files/chatdata-example.json/"
+    const val url = "https://media.meditopia.com/files/"
 
     @Singleton
     @Provides
